@@ -2,40 +2,161 @@
 <html>
 <head></head>
 <body>
-  <form id="box">
+  <form id="box" onsubmit="return myFinal()">
     <fieldset form='sign up'>
       <legend>Sign up here!</legend>
-      
-      <label for='name'>Enter name:</label><br>
-      <input id='name' type='text' required><br><br>
-      
-      <label for='User'>Preferred Username:</label><br>
-      <input id='User' type='text' required><br><br>
-      
+     
+      <label for='name' onblur="myFunction1()" onfocus="myFocus1()">Enter name:</label><br>
+      <input id='name' type='text' onblur="myFunction1()" onfocus="myFocus1()"><br><br>
+     
+      <label for="gender">Gender</label><br>
+      <select id="gender" onblur="myFunction()" onfocus="myFocus()" name="choices">
+        <option value="Male" name="choices">Male</option>
+        <option value="female" name="choices">Female</option>
+        <option value="prefer not to mention" name="choices">Prefer not to mention</option>
+      </select><br><br>
+     
       <label for='pass'>Password:</label><br>
-      <input id='pass' type='password' required><br><br>
-      
+      <input id='pass' type='password' onblur="myFunction2()" onfocus="myFocus2()"><br><br>
+     
       <label for='passConfirm'>Confirm Password:</label><br>
-      <input id='passConfirm' type='password' required><br><br>
-      
+      <input id='passConfirm' type='password' onblur="myFunction3()" onfocus="myFocus3()" required><br><br>
+     
       <label for='Email'>Email:</label><br>
-      <input id='Email' type='email' required><br><br>
-      
+      <input id='Email' type='email' onblur="myFunction4()" onfocus="myFocus4()" required><br><br>
+     
       <label for='add'>Address:</label><br>
-      <input id='add' type='text' required><br><br>
-      
+      <input id='add' type='text' onblur="myFunction5()" onfocus="myFocus5()"required><br><br>
+     
       <label for='paragraph'>User Interest:</label><br>
-      <textarea id='paragraph' rows='5' cols='50'></textarea><br><br>
-      
+      <textarea id='paragraph' rows='5' cols='50' onblur="myFunction6()" onfocus="myFocus6()"></textarea><br><br>
+     
       <input type="submit" value="Submit" id="lasts">
       <input type="reset" value="Reset" id="lasts">
-      
+     
     </fieldset>
   </form>
-  
+  <p id="output"></p>
   <script>
+    function myFunction1() {
+      var x = document.getElementById('name').value;
+      if (x == "") {
+        document.getElementById('name').style.border = "thick solid red";
+        
+      } else {
+        return false;
+      }
+    }
+    function myFocus1() {
+      var x = document.getElementById('name').value;
+      if (x != "") {
+        document.getElementById('name').style.border = "thick solid green";
+      }
+    }
+
+    function myFunction() {
+      var x = document.getElementsByName('choices')[0].value;
+      if (x == "") {
+        document.getElementsByName('choices')[0].style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus() {
+      document.getElementsByName('choices')[0].style.border = "thick solid green";
+    }
+
+    function myFunction2() {
+      var x = document.getElementById('pass').value;
+      if (x == "") {
+        document.getElementById('pass').style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus2() {
+      var x = document.getElementById('pass').value;
+      if (x != "") {
+        document.getElementById('pass').style.border = "thick solid green";
+      }
+    }
+
+    function myFunction3() {
+      var x = document.getElementById('passConfirm').value;
+      if (x == "") {
+        document.getElementById('passConfirm').style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus3() {
+      var x = document.getElementById('passConfirm').value;
+      if (x != "") {
+        document.getElementById('passConfirm').style.border = "thick solid green";
+      }
+    }
+
+    function myFunction4() {
+      var x = document.getElementById('Email').value;
+      if (x == "") {
+        document.getElementById('Email').style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus4() {
+      var x = document.getElementById('Email').value;
+      if (x != "") {
+        document.getElementById('Email').style.border = "thick solid green";
+      }
+    }
+
+    function myFunction5() {
+      var x = document.getElementById('add').value;
+      if (x == "") {
+        document.getElementById('add').style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus5() {
+      var x = document.getElementById('add').value;
+      if (x != "") {
+        document.getElementById('add').style.border = "thick solid green";
+      }
+    }
+
+    function myFunction6() {
+      var x = document.getElementById('paragraph').value;
+      if (x == "") {
+        document.getElementById('paragraph').style.border = "thick solid red";
+      } else {
+        return false;
+      }
+    }
+    function myFocus6() {
+      var x = document.getElementById('paragraph').value;
+      if (x != "") {
+        document.getElementById('paragraph').style.border = "thick solid green";
+      }
+    }
+
+    
+    function myFinal() {
+      var name = document.getElementById('name').value;
+      var gender = document.getElementsByName('choices')[0].value;
+      var password = document.getElementById('pass').value;
+      var email = document.getElementById('Email').value;
+      var address = document.getElementById('add').value;
+      var userInterest = document.getElementById('paragraph').value;
+
+      var output = "Name: " + name + "<br>" + "Gender: " + gender + "<br>" + "Password: " + password + "<br>" + "Email: " + email + "<br>" + "Address: " + address + "<br>" + "User Interest: " + userInterest;
+
+      document.getElementById('output').innerHTML = output;
+      return false; // To prevent actual form submission
+    }
   </script>
-  
+ 
   <style>
     body {
       background: url("https://ghiblicollection.com/cdn/shop/products/totoro_hires_1_7dc984c6-a680-4b5e-ac19-642c5e7617ce.jpg?v=1675792119&width=1920");
@@ -55,6 +176,7 @@
       transform: translate(-50%, -50%);
       background: rgba(7, 7, 7, 0.71);
     }
+   
   </style>
 </body>
 </html>
